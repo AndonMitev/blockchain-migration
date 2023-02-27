@@ -115,11 +115,6 @@ export default [
             type: 'uint256',
           },
           {
-            internalType: 'uint256',
-            name: 'maxSupply',
-            type: 'uint256',
-          },
-          {
             internalType: 'string',
             name: 'uri',
             type: 'string',

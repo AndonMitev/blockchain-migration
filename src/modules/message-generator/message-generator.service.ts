@@ -147,6 +147,8 @@ export class MessageGeneratorService {
 
     const contract = new Contract(toContractAddress, CollectionABI, wallet);
 
+    let processedSuccessful = true;
+
     for (let i = 0; i < ownerBatches.length; i++) {
       const owners = ownerBatches[i];
       const nfts = nftBatches[i];
@@ -157,12 +159,17 @@ export class MessageGeneratorService {
       if (receipt.status === 1) {
         console.log(`Batch #${i} successfully processed 🚀`);
       } else {
+        processedSuccessful = false;
         console.log(
           `Batch #${i} Failed, TokenIDS: ${nfts} / Owners: ${owners}`,
         );
       }
 
       await sleep(15_000);
+    }
+
+    if (processedSuccessful) {
+      console.log('All batches successfully minted');
     }
   }
 }
